@@ -35,7 +35,8 @@ public class MyTransformation {
                                             final TypeDescription        typeDescription,
                                             final ClassLoader            classloader,
                                             final JavaModule             module) {
-      return builder.method(ElementMatchers.named("say")).
+      return builder.method(ElementMatchers.not(ElementMatchers.isAbstract()).
+                                            and(ElementMatchers.named("say"))).
                     intercept(FixedValue.value("transformed"));
     }
     });
